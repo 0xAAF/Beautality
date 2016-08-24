@@ -1,3 +1,32 @@
 <resources>
     <string name="app_name">Beautality</string>
+    <string name="app_substring">make it easy</string>
+    <string name="navigation_drawer_open">Beautality</string>
+    <string name="navigation_drawer_close">Beautality</string>
+    <string name="activity_companies_empty">No available companies</string>
+    <string name="owner_contact_group">Contacts</string>
+    <string name="owner_gallery_group">Gallery</string>
+    <string name="owner_tel_label">Tel.</string>
+    <string name="owner_address_label">Address</string>
+    <string name="activity_gallery_position_of">of</string>
+
+    <string name="activity_splash_screen_logo">Beautality</string>
+    <string name="activity_splash_screen_sublogo">all in one</string>
+    <string name="activity_login_email_hint">Email</string>
+    <string name="activity_login_password_hint">Password</string>
+    <string name="activity_login_sign_in_btn">Login</string>
+    <string name="activity_login_email_error">Incorrect email</string>
+    <string name="activity_login_password_error">Incorrect password</string>
+
+    <string name="key_settings" translatable="false">settings</string>
+    <string name="key_settings_access_token" translatable="false">settings_access_token</string>
+    <string name="key_settings_city" translatable="false">settings_city</string>
+    <string name="key_settings_user_id" translatable="false">settings_userid</string>
+
+    <string name="alert_error_unableToConnect">Unable connect to server. Check your internet connection.</string>
+    <string name="alert_error_pageNoFound">Sorry, page not found.</string>
+    <string name="alert_error_server">Sorry, server has internal error.</string>
+    <string name="alert_error_client">Sorry, client has internal error.</string>
+    <string name="alert_error_title">Error</string>
+    <string name="alert_button_ok">OK</string>
 </resources>
