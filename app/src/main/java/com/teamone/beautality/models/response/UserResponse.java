@@ -6,6 +6,7 @@ import java.util.List;
  * Created by oshhepkov on 24.08.16.
  */
 public class UserResponse {
+    private String sessionId;
     private String _id, createdAt,updatedAt,email,password,username;
     private String emailVerified;
     private List<String> readACL,removeACL,updateACL;
@@ -88,5 +89,17 @@ public class UserResponse {
 
     public void setUpdateACL(List<String> updateACL) {
         this.updateACL = updateACL;
+    }
+
+    public String getSessionId() {
+        return sessionId;
+    }
+
+    public void setSessionId(String sessionId) {
+        this.sessionId = sessionId;
+    }
+
+    public String getEmailVerified() {
+        return emailVerified;
     }
 }

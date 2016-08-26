@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.teamone.beautality.R;
+import com.teamone.beautality.models.request.LoginRequest;
 import com.teamone.beautality.models.response.LoginResponse;
 
 import java.math.BigInteger;
@@ -29,8 +30,6 @@ import retrofit2.Response;
 public class LoginActivity extends BaseActivity {
 
     private static final String TAG = LoginActivity.class.getSimpleName();
-    private static final String APP = "bc2d3bb69ff9e36b25fc78d94db1e94d";
-    private static final String CLI = "2733ccbef86c7ebbdab2c7593a68bf88";
 
 
     private Button mBtnSignIn;
@@ -56,8 +55,8 @@ public class LoginActivity extends BaseActivity {
         mBtnSignIn.setOnClickListener(mClickBtnLoginListener);
 
 
-        mETEmail.setText("a32sdf@domain.zone");
-        mETPassword.setText("123456");
+      //  mETEmail.setText("useremail@domain.zone");
+      //  mETPassword.setText("CorrectHorseStapleButton");
     }
 
     private boolean formIsValid() {
@@ -127,14 +126,11 @@ public class LoginActivity extends BaseActivity {
     private View.OnClickListener mClickBtnLoginListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            String emailFromET = mETEmail.getText().toString().trim();
-            String passwordFromET = mETPassword.getText().toString().trim();
-
-            // передать это вместо пароля
-            String encryptedPassword = MD5_Hash(passwordFromET);
+            String email = mETEmail.getText().toString().trim();
+            String password = mETPassword.getText().toString().trim();
 
             if (formIsValid()) {
-                Call<LoginResponse> call = getApi().getLogin(APP,CLI,emailFromET, passwordFromET);
+                Call<LoginResponse> call = getApi().postLogin(new LoginRequest(APP,CLI,email, password));
                 call.enqueue(mCallBack);
             }
         }
@@ -155,12 +151,16 @@ public class LoginActivity extends BaseActivity {
         public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
             try {
                 if(response.code() == 200) {
-                   // saveAccessToken(response.body().getAccessToken().toString());
+                    saveAccessToken(response.body().getResult().getSessionId());
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
                     finish();
                 } else {
                     Log.e("APP", "Server response ("+response.code()+"): ");
+                    for (int i=0; i<response.headers().size();i++) {
+                        Log.e("APP", response.headers().name(i)+":"+response.headers().value(i));
+                    }
+                    Log.e("APP", response.message());
                     showErrorMessage(R.string.alert_error_title,R.string.alert_error_server);
                 }
             } catch (Exception exception) {

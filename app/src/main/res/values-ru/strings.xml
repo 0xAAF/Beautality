@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="activity_about_footer">2016 TeamOne\nг. Волгоград</string>
+    <string name="activity_about_text">Мобильное приложение Beautality - это самый удобный способ найти хорошего мастера или салон красоты вашего города!</string>
+    <string name="activity_companies_empty">Нет доступных компаний</string>
+    <string name="activity_gallery_position_of">из</string>
+    <string name="activity_help_button">Отправить письмо</string>
+    <string name="activity_help_text">Предложения и пожелания отправляйте на почту support@beautality.ru</string>
+    <string name="activity_login_email_error">Некорректный email</string>
+    <string name="activity_login_email_hint">Email</string>
+    <string name="activity_login_password_error">Некорректный пароль</string>
+    <string name="activity_login_password_hint">Пароль</string>
+    <string name="activity_login_sign_in_btn">Вход</string>
+    <string name="activity_splash_screen_logo">Beautality</string>
+    <string name="activity_splash_screen_sublogo">Все в одном</string>
+    <string name="alert_error_pageNoFound">Извените, страница не найдена.</string>
+    <string name="alert_error_client">Извините, в приложении проихошла ошибка.</string>
+    <string name="alert_button_ok">OK</string>
+    <string name="alert_error_server">Извените, на сервере произошла ошибка</string>
+    <string name="alert_error_title">Ошибка</string>
+    <string name="alert_error_unableToConnect">Не могу подлючиться к серверу. Проверте интернет соединение.</string>
+    <string name="app_substring">Сделай жизнь красивее</string>
+    <string name="fragment_owner_services">Услуги</string>
+    <string name="fragment_owner_workers">Специалисты</string>
+    <string name="nav_about">О приложении</string>
+    <string name="nav_help">Помощь</string>
+    <string name="nav_list">Каталог</string>
+    <string name="nav_logout">Выход</string>
+    <string name="owner_address_label">Адрес</string>
+    <string name="owner_contact_group">Контакты</string>
+    <string name="owner_gallery_group">Галерея</string>
+    <string name="owner_tel_label">Тел.</string>
+    <string name="owner_time_label">Время</string>
+    <string name="nodata_placeholder">Нет информации по вашему запросу.</string>
+</resources>

@@ -20,6 +20,18 @@ public class SplashScreenActivity extends BaseActivity {
         handler.postDelayed(mTaskNextActivity, 2000 );
     }
 
+    private void makeLogic(int id) {
+
+        Intent activity;
+        if (id == 0) {
+            activity = new Intent(this, MainActivity.class);
+        } else {
+            activity = new Intent(this, LoginActivity.class);
+        }
+        startActivity(activity);
+        finish();
+    }
+
     private Runnable mTaskNextActivity = new Runnable() {
         @Override
         public void run() {
@@ -27,15 +39,14 @@ public class SplashScreenActivity extends BaseActivity {
             String accessToken = sharedPreferences.getString(getString(R.string.key_settings_access_token), "");
 
             Intent activity;
-
-            if (accessToken.isEmpty()) {
-                activity = new Intent(SplashScreenActivity.this, LoginActivity.class);
-            } else {
+            if (!accessToken.isEmpty()) {
                 activity = new Intent(SplashScreenActivity.this, MainActivity.class);
+            } else {
+                activity = new Intent(SplashScreenActivity.this, LoginActivity.class);
             }
-
             startActivity(activity);
             finish();
+
         }
     };
 }

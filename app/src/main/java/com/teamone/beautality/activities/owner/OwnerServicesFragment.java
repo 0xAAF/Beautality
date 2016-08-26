@@ -2,7 +2,6 @@ package com.teamone.beautality.activities.owner;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.teamone.beautality.R;
+import com.teamone.beautality.activities.BaseFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,12 +18,11 @@ import java.util.List;
 /**
  * Created by oshhepkov on 21.08.16.
  */
-public class OwnerServicesFragment extends Fragment{
+public class OwnerServicesFragment extends BaseFragment {
     private RecyclerView mRVServiceList;
     private RecyclerViewAdapter mServiceAdapter;
+    private List<String> mList;
 
-
-    @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_owner_services, container, false);
@@ -36,23 +35,16 @@ public class OwnerServicesFragment extends Fragment{
         mRVServiceList.setAdapter(mServiceAdapter);
         mRVServiceList.setLayoutManager(mLayoutManager);
 
-        getContent();
+        mServiceAdapter.set(mList);
 
         return root;
     }
-
-    public void getContent() {
-        //TODO: Retrofit callback here
-
-        mServiceAdapter.add("nails", "150 rub");
-        mServiceAdapter.add("hair", "500 rub");
+    public OwnerServicesFragment setList(List<String> list) {
+        this.mList = new ArrayList<>(list);
+        return this;
     }
-
-
-
     private class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
-        List<String> mListNames = new ArrayList<>();
-        List<String> mListPrice = new ArrayList<>();
+        List<String> mList = new ArrayList<>();
         @Override
         public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclerview_owner_service_item, parent, false);
@@ -61,19 +53,21 @@ public class OwnerServicesFragment extends Fragment{
 
         @Override
         public void onBindViewHolder(ViewHolder holder, int position) {
-            holder.bind(mListNames.get(position), mListPrice.get(position));
+            holder.bind(mList.get(position));
         }
 
         @Override
         public int getItemCount() {
-            return mListNames.size();
-        }
-        public void add(String name, String price) {
-            mListNames.add(name);
-            mListPrice.add(price);
-            notifyDataSetChanged();
+            return mList.size();
         }
 
+        public void add(String service) {
+            mList.add(service);
+            notifyDataSetChanged();
+        }
+        public void set(List<String> data) {
+            mList = new ArrayList<>(data);
+        }
         public class ViewHolder extends RecyclerView.ViewHolder {
             TextView mTVTitle, mTVPrice;
             public ViewHolder(View itemView) {
@@ -81,9 +75,8 @@ public class OwnerServicesFragment extends Fragment{
                 mTVTitle = (TextView) itemView.findViewById(R.id.tv_title);
                 mTVPrice = (TextView) itemView.findViewById(R.id.tv_price);
             }
-            public void bind(String name, String price) {
-                mTVTitle.setText(name);
-                mTVPrice.setText(price);
+            public void bind(String service) {
+                mTVTitle.setText(service);
             }
         }
     }

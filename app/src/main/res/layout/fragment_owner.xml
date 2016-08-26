@@ -16,10 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:background="@color/white"
-        android:layout_marginLeft="-4dp"
-        android:layout_marginRight="-4dp"
-        android:layout_marginTop="-6dp"
-        card_view:contentPadding="-2dp">
+         card_view:contentPadding="-4dp">
         <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -27,50 +24,65 @@
             <LinearLayout
                 android:id="@+id/ll_image"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="wrap_content"
                 android:background="@color/sky_blue"
                 android:gravity="center"
-
                 >
+
                 <ImageView
                     android:id="@+id/iv_logo"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="96dp"
                     android:layout_gravity="center"
                     android:scaleType="centerCrop"
                     android:src="@drawable/drawable_companies_image_placeholder"
-                    />
+                    android:layout_centerHorizontal="true" />
+
             </LinearLayout>
-            <TextView
-                android:id="@+id/tv_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:textColor="@color/warm_grey"
-                />
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="4dp"
+                    android:textSize="16dp"
+                    android:textColor="@color/warm_grey"
+                    />
+                <TextView
+                    android:id="@+id/tv_subtitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:textSize="14dp"
+                    android:textColor="@color/warm_gray_two"
+                    />
         </LinearLayout>
      </android.support.v7.widget.CardView>
      <android.support.v7.widget.CardView
          android:layout_width="match_parent"
          android:layout_height="wrap_content"
-         android:layout_marginBottom="0dp"
-         android:background="@color/white"
-         android:layout_marginLeft="-4dp"
-         android:layout_marginRight="-4dp"
-         android:layout_marginTop="-6dp"
-         card_view:contentPadding="-2dp">
+         >
         <Button
             android:id="@+id/bt_services"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Services"
+            android:text="@string/fragment_owner_services"
             android:textAlignment="gravity"
             android:gravity="left|center_vertical"
             android:padding="20dp"
             android:textSize="15sp"
             android:textColor="@color/warm_grey"
-            android:background="@drawable/selector_button"
+            android:background="@drawable/selector_button_white"
             style="@style/Base.Widget.AppCompat.Button.Borderless"/>
+
     </android.support.v7.widget.CardView>
     <TextView
         android:layout_width="match_parent"
@@ -83,11 +95,7 @@
          android:layout_width="match_parent"
          android:layout_height="wrap_content"
          android:layout_marginBottom="0dp"
-         android:background="@color/white"
-         android:layout_marginLeft="-4dp"
-         android:layout_marginRight="-4dp"
-         android:layout_marginTop="-6dp"
-         card_view:contentPadding="-2dp">
+         android:background="@color/white" >
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -102,7 +110,7 @@
                     android:id="@+id/tv_tel_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="12sp"
+                    android:textSize="14sp"
                     android:text="@string/owner_tel_label"/>
                 <TextView
                     android:id="@+id/tv_tel"
@@ -111,14 +119,14 @@
                     android:layout_alignBaseline="@id/tv_tel_label"
                     android:layout_alignParentRight="true"
                     android:textColor="@color/sky_blue"
-                    android:textSize="12sp"
+                    android:textSize="14sp"
                     />
                 <TextView
                     android:id="@+id/tv_address_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tv_tel_label"
-                    android:textSize="12sp"
+                    android:textSize="14sp"
                     android:text="@string/owner_address_label"/>
                 <TextView
                     android:id="@+id/tv_address"
@@ -126,32 +134,54 @@
                     android:layout_height="wrap_content"
                     android:layout_alignBaseline="@id/tv_address_label"
                     android:layout_alignParentRight="true"
-                    android:textSize="12sp"
+                    android:textSize="14sp"
+                    />
+                <TextView
+                    android:id="@+id/tv_time_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_address_label"
+                    android:textSize="14sp"
+                    android:text="@string/owner_time_label"/>
+                <TextView
+                    android:id="@+id/tv_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@id/tv_time_label"
+                    android:layout_alignParentRight="true"
+                    android:textSize="14sp"
                     />
             </RelativeLayout>
             <ImageView
                 android:id="@+id/iv_map"
                 android:gravity="center"
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
                 android:background="@color/white"
                />
         </LinearLayout>
     </android.support.v7.widget.CardView>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:textColor="@color/black"
-        android:textSize="9sp"
-        android:text="@string/owner_gallery_group"/>
-    <LinearLayout
-        android:id="@+id/ll_gallery"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="2dp"
-        android:orientation="horizontal"
-        android:background="@color/white">
-    </LinearLayout>
+     <LinearLayout
+         android:id="@+id/ll_gallery_block"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:textSize="9sp"
+            android:text="@string/owner_gallery_group"/>
+        <LinearLayout
+            android:id="@+id/ll_gallery"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:orientation="horizontal"
+            android:background="@color/white">
+        </LinearLayout>
+     </LinearLayout>
  </LinearLayout>
 </ScrollView>

@@ -14,7 +14,7 @@
             android:text="@string/activity_splash_screen_logo"
             android:textSize="50sp"
             android:textColor="@color/white"
-            android:layout_gravity="right"
+            android:layout_gravity="center"
                 />
 
         <TextView

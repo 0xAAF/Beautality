@@ -8,9 +8,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
 import com.teamone.beautality.R;
 import com.teamone.beautality.activities.BaseActivity;
-import com.teamone.beautality.models.response.CompaniesItemResponse;
+import com.teamone.beautality.models.response.ListItemResponse;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +23,7 @@ import java.util.List;
 public class CompaniesAdapter extends RecyclerView.Adapter<CompaniesAdapter.ProjectItemViewHolder>{
 
     private BaseActivity mActivity;
-    private List<CompaniesItemResponse> mProjectList;
+    private List<ListItemResponse> mProjectList;
     private OnItemClickListener mListener;
 
     public CompaniesAdapter(Activity activity,OnItemClickListener listener){
@@ -52,7 +53,7 @@ public class CompaniesAdapter extends RecyclerView.Adapter<CompaniesAdapter.Proj
      * add ProjectListItemResponse and update view
      * @param data
      */
-    public void add(CompaniesItemResponse data){
+    public void add(ListItemResponse data){
         mProjectList.add(data);
         notifyDataSetChanged();
     }
@@ -61,7 +62,7 @@ public class CompaniesAdapter extends RecyclerView.Adapter<CompaniesAdapter.Proj
      * sets ArrayList to adapter
      * @param data
      */
-    public void set(List<CompaniesItemResponse>data){
+    public void set(List<ListItemResponse>data){
         if(data != null) {
             mProjectList = new ArrayList<>(data);
         }
@@ -73,44 +74,23 @@ public class CompaniesAdapter extends RecyclerView.Adapter<CompaniesAdapter.Proj
      */
     protected class ProjectItemViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView mTVProjectTitle,mTVOwnerName;
-        private ImageView mIVProjectImage, mIVOwnerImage;
+        private TextView mTVProjectTitle;
+        private ImageView mIVProjectImage;
 
         private ProjectItemViewHolder(View itemView) {
             super(itemView);
             mTVProjectTitle = (TextView) itemView.findViewById(R.id.tv_title);
-            mTVOwnerName = (TextView) itemView.findViewById(R.id.tv_owner);
-            mIVProjectImage = (ImageView) itemView.findViewById(R.id.iv_project);
-            mIVOwnerImage = (ImageView) itemView.findViewById(R.id.iv_owner);
+            mIVProjectImage = (ImageView) itemView.findViewById(R.id.iv_logo);
         }
 
-        private void bind(final CompaniesItemResponse item, final OnItemClickListener listener) {
+        private void bind(final ListItemResponse item, final OnItemClickListener listener) {
             mTVProjectTitle.setText(item.getTitle());
-            String name ="";
 
-            if (!item.getOwner().getFirstName().equals(null)) {
-                name+=item.getOwner().getFirstName();
-            }
-            if (!item.getOwner().getLastName().equals(null)) {
-                name+=" "+item.getOwner().getLastName();
-            }
-            mTVOwnerName.setText(name);
-
-            /*
-            if (item.getOwner().getAvatar() != null) {
                 Picasso.with(mActivity)
-                        .load(mActivity.mApiService.getPictureUrl( item.getOwner().getAvatar()) )
-                        .transform(new PicassoCircleTransform())
-                        .into(mIVOwnerImage);
-            }
-
-            if (item.getPictures().size() > 0) {
-                Picasso.with(mActivity)
-                        .load(mActivity.mApiService.getPictureUrl( item.getPictures().get(0)) )
+                        .load(item.getLogo())
                         .noPlaceholder()
                         .into(mIVProjectImage);
-            }
-*/
+
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override public void onClick(View v) {
                     listener.onItemClick(item);
@@ -119,11 +99,10 @@ public class CompaniesAdapter extends RecyclerView.Adapter<CompaniesAdapter.Proj
 
         }
     }
-
     /**
      * interface on click listener for RecyclerView
      */
     public interface OnItemClickListener {
-        void onItemClick(CompaniesItemResponse item);
+        void onItemClick(ListItemResponse item);
     }
 }

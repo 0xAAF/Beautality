@@ -2,11 +2,11 @@ package com.teamone.beautality.activities;
 
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 
+import com.google.gson.Gson;
 import com.teamone.beautality.R;
 import com.teamone.beautality.activities.owner.OwnerFragment;
-import com.teamone.beautality.activities.owner.OwnerServicesFragment;
+import com.teamone.beautality.models.response.ListItemResponse;
 
 /**
  * Created by oshhepkov on 21.08.16.
@@ -14,16 +14,23 @@ import com.teamone.beautality.activities.owner.OwnerServicesFragment;
 
 public class OwnerActivity extends BaseActivity{
 
+    private ListItemResponse mItem;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_owner);
-        startFragment(new OwnerFragment().setServicesClickListener(mServicesClickListener), false);
+        Gson gson = new Gson();
+        mItem = gson.fromJson(getIntent().getStringExtra(MainActivity.BUNDLE_COMPANIES_ITEM), ListItemResponse.class);
+        startFragment(new OwnerFragment().setItem(mItem), false);
+
+
     }
 
     @Override
     public void onPostCreate(Bundle bundle) {
         super.onPostCreate(bundle);
+        mToolbar.setTitle(mItem.getTitle());
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
     }
@@ -38,11 +45,4 @@ public class OwnerActivity extends BaseActivity{
                 return super.onOptionsItemSelected(item);
         }
     }
-
-    View.OnClickListener mServicesClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            startFragment(new OwnerServicesFragment(), true);
-        }
-    };
 }
